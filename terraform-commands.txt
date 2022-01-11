@@ -1,7 +1,8 @@
 Plan:
 terraform plan \
   -var "do_token=${DO_PAT}" \
-  -var "pvt_key=$HOME/.ssh/new-key"
+  -var "pvt_key=$HOME/.ssh/new-key" \
+  -var "region=lon1"
 
 Apply:
 terraform apply \
