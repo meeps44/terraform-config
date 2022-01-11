@@ -1,0 +1,22 @@
+    inline = [
+      "export PATH=$PATH:/usr/bin",
+      # install nginx
+      "sudo apt update",
+      "sudo apt install -y nginx"
+      mkdir ~/git
+
+# Paris-traceroute install
+cd ~/git
+git clone https://github.com/meeps44/libparistraceroute.git
+cd ~/git/libparistraceroute
+mkdir m4
+./autogen.sh
+./configure
+ldconfig
+make
+make install
+
+# Salt install
+curl -L https://bootstrap.saltstack.com -o install_salt.sh
+sudo sh install_salt.sh -A <IP of Salt Master>
+    ]
