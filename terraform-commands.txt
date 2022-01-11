@@ -1,0 +1,14 @@
+Plan:
+terraform plan \
+  -var "do_token=${DO_PAT}" \
+  -var "pvt_key=$HOME/.ssh/new-key"
+
+Apply:
+terraform apply \
+  -var "do_token=${DO_PAT}" \
+  -var "pvt_key=$HOME/.ssh/new-key"
+
+Destroy:
+terraform plan -destroy -out=terraform.tfplan \
+  -var "do_token=${DO_PAT}" \
+  -var "pvt_key=$HOME/.ssh/new-key"
