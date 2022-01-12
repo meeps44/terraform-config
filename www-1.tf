@@ -22,6 +22,7 @@ provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
       "sudo apt update",
+      "apt install autoconf build-essential git libtool",
       "mkdir ~/git",
       "cd ~/git",
       "git clone https://github.com/meeps44/libparistraceroute.git",
@@ -29,10 +30,10 @@ provisioner "remote-exec" {
       "mkdir m4",
       "./autogen.sh",
       "./configure",
-      "ldconfig",
       "make",
       "make install",
-      "export PATH=$PATH:~/git/libparistraceroute/paris-traceroute"
+      "export PATH=$PATH:~/git/libparistraceroute/paris-traceroute",
+      "ldconfig"
     ]
   }
 }
