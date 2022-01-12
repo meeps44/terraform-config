@@ -1,5 +1,5 @@
 resource "digitalocean_droplet" "www-1" {
-    count = 4
+    count = 2
     
     image = "ubuntu-20-04-x64"
     name = "ubuntu-${count.index}"
