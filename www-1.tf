@@ -21,9 +21,18 @@ connection {
 provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      # install nginx
       "sudo apt update",
-      "sudo apt install -y nginx"
+      "mkdir ~/git",
+      "cd ~/git",
+      "git clone https://github.com/meeps44/libparistraceroute.git",
+      "cd ~/git/libparistraceroute",
+      "mkdir m4",
+      "./autogen.sh",
+      "./configure",
+      "ldconfig",
+      "make",
+      "make install",
+      "export PATH=$PATH:~/git/libparistraceroute/paris-traceroute"
     ]
   }
 }
