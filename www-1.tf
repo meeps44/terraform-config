@@ -23,6 +23,8 @@ provisioner "remote-exec" {
       "export PATH=$PATH:/usr/bin",
       "sudo apt update",
       "apt install autoconf build-essential git libtool",
+      "curl -L https://bootstrap.saltstack.com -o install_salt.sh",
+      "sudo sh install_salt.sh -A 35.178.13.144",
       "mkdir ~/git",
       "cd ~/git",
       "git clone https://github.com/meeps44/libparistraceroute.git",
@@ -30,10 +32,10 @@ provisioner "remote-exec" {
       "mkdir m4",
       "./autogen.sh",
       "./configure",
-      "make",
-      "make install",
       "export PATH=$PATH:~/git/libparistraceroute/paris-traceroute",
-      "ldconfig"
+      "ldconfig",
+      "make",
+      "make install"
     ]
   }
 }
