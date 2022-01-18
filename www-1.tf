@@ -1,5 +1,5 @@
 resource "digitalocean_droplet" "www-1" {
-    count = 2
+    count = 1
     
     image = "ubuntu-20-04-x64"
     name = "ubuntu-${count.index}"
@@ -32,10 +32,10 @@ provisioner "remote-exec" {
       "mkdir m4",
       "./autogen.sh",
       "./configure",
-      "export PATH=$PATH:~/git/libparistraceroute/paris-traceroute",
       "ldconfig",
       "make",
-      "make install"
+      "make install",
+      "export PATH=$PATH:~/git/libparistraceroute/paris-traceroute"
     ]
   }
 }
