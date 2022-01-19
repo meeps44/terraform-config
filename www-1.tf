@@ -21,8 +21,9 @@ connection {
 provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      "sudo apt update",
-      "apt install autoconf build-essential git libtool",
+      "sudo apt update -y",
+      "sudo apt upgrade -y",
+      "apt install autoconf build-essential git libtool -y",
       "curl -L https://bootstrap.saltstack.com -o install_salt.sh",
       "sudo sh install_salt.sh -A 209.97.138.74",
       "mkdir ~/git",
@@ -35,7 +36,8 @@ provisioner "remote-exec" {
       "ldconfig",
       "make",
       "make install",
-      "export PATH=$PATH:~/git/libparistraceroute/paris-traceroute"
+      "export PATH=$PATH:~/git/libparistraceroute/paris-traceroute",
+      "ldconfig"
     ]
   }
 }
