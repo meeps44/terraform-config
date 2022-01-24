@@ -1,0 +1,3 @@
+salt '*' cmd.run 'curl --remote-name https://raw.githubusercontent.com/meeps44/terraform-config/master/bash-scripts/paris-traceroute-install.sh'
+salt '*' cmd.run 'bash paris-traceroute-install.sh'
+salt '*' cmd.run 'sudo paris-traceroute -T 23 ipv6.google.com'
