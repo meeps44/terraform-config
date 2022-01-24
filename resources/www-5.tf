@@ -2,7 +2,7 @@ resource "digitalocean_droplet" "www-5" {
     count = 1
     
     image = "ubuntu-20-04-x64"
-    name = "ubuntu-${count.index}"
+    name = "ubuntu-sgp1-${count.index}"
     region = "sgp1"
     size = "s-1vcpu-1gb"
     ipv6 = true

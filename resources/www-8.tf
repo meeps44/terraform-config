@@ -2,7 +2,7 @@ resource "digitalocean_droplet" "www-8" {
     count = 1
     
     image = "ubuntu-20-04-x64"
-    name = "ubuntu-${count.index}"
+    name = "ubuntu-blr1-${count.index}"
     region = "blr1"
     size = "s-1vcpu-1gb"
     ipv6 = true
