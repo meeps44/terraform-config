@@ -15,5 +15,7 @@ for flow_label in "${flow_labels[@]}"; do
         destination_address=$line
         sudo paris-traceroute -T $flow_label $destination_address >> $filename
     done
-
+    # scp $filename 209.97.138.74:/root/logs/test-logs-january/
 done
+
+# TODO: send $filename to log server via scp
