@@ -9,7 +9,7 @@ flow_labels=(23, 100)
 
 for flow_label in "${flow_labels[@]}"; do
     filename="$HOSTNAME-${date}-${flow_label}.txt"
-    echo $filename
+    echo "filename: $filename"
 
     cat ipv6-address-list.txt | while read line; do
         destination_address=$line
