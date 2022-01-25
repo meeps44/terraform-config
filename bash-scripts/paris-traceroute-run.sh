@@ -3,8 +3,8 @@
 date=$(date '+%Y-%m-%d')
 # date=$(date '+%Y-%m-%d %H:%M:%S')
 host="$HOSTNAME"
-# flow_labels=(0, 23, 100, 150, 200)
-flow_labels=(23, 100)
+# flow_labels=(0 23 100 150 200)
+flow_labels=(23 100)
 # destination_port="default"
 
 for flow_label in "${flow_labels[@]}"; do
