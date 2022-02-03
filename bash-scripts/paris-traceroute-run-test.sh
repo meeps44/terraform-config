@@ -11,6 +11,27 @@ if [ $local_hostname == $somehost ]
 then
     echo $local_hostname
     # f
+elif [ ]
+then
+
+elif [ ]
+then
+
+elif [ ]
+then
+
+elif [ ]
+then
+
+elif [ ]
+then
+
+elif [ ]
+then
+
+elif [ ]
+then
+
 fi
 
 for flow_label in "${flow_labels[@]}"; do
