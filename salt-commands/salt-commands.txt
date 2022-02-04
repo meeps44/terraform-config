@@ -3,3 +3,14 @@ salt '*' cmd.run 'bash paris-traceroute-install.sh'
 salt-cp '*'
 salt '*' cmd.run 'echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCkwVDhGaQSUpSA4yvAoCwz8h0vyIMyHBmMLTV5gXOvo+i8igURd9b5ZKV9ygrvzxtbiSG7oUbBONpJ1rrgAby1wZ5nQd6jrxQE3UwpuxQC1mMk+5MEpbw/PFmIPdNtVCpn5mRFjkhJpN78IVk43qQw0T9LdkwGqBDBvdfUgzGa66y7NtDpDZUQ+TfRTSku7ubwdj1U6WXQ7FYn+alGwO0pr40XmyyVeD8CmB6sqReva5btrF3VAOSIAykEbaLY1WV3ydNg3p6TRNwlLIBlIDBTtAtyFX1fTFzexAmywxqSKj1wVRH+g2XCpMnJIB3RoY5Pl63pEW6bodlOLAVYZtBI72qndSq8//01J387KMLV92jNzngsDtlgKJxOCDL7JK6fUAcelfK0xMKLMyGXN8QUw9oduoVOgRs+KhId637WxNNVu6osrxFIGZ7UtZQpn6YYfYTYs8grNUBMzGJ6hAb3SwWGpVlmMZ39RjfBbgUB+1lXUzp1iotJQNXEULjC5Pk= root@ubuntu-s-1vcpu-1gb-lon1-01 >> /root/.ssh/authorized_keys'
 salt '*' cmd.run 'sudo paris-traceroute -T 23 ipv6.google.com'
+
+salt '*' cmd.run 'curl --remote-name ttps://raw.githubusercontent.com/meeps44/terraform-config/master/python-scripts/file-to-list.py
+salt '*' cmd.run 'curl --remote-name ttps://raw.githubusercontent.com/meeps44/terraform-config/master/bash-scripts/ipv6-address-list.txt
+salt '*' cmd.run 'curl --remote-name ttps://raw.githubusercontent.com/meeps44/terraform-config/master/bash-scripts/paris-traceroute-run-test.sh
+
+
+files needed on salt minions:
+	file-to-list.py
+	ipv6-address-list.txt
+	paris-traceroute-run.sh
+	paris-traceroute-run-test.sh
