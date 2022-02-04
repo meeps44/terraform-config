@@ -24,5 +24,5 @@ hop_dictionary = { count : item for count, item in enumerate(hop_list, start=1) 
 
 my_dict["hops"] = hop_dictionary
 
-with open('app.json', 'w') as fp:
+with open(f'{args.filepath}.json', 'w') as fp:
     json.dump(my_dict, fp, indent=4)

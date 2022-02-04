@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-filename="test.txt"
+filename=$1
 
 # Replace *** with something the regex can catch (0000:0000) or something
 # sed -i 's/\* \* \*/::1/g' $filename 
