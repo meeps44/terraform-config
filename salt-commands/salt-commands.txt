@@ -7,6 +7,7 @@ salt '*' cmd.run 'sudo paris-traceroute -T 23 ipv6.google.com'
 salt '*' cmd.run 'curl --remote-name https://raw.githubusercontent.com/meeps44/terraform-config/master/python-scripts/file-to-list.py'
 salt '*' cmd.run 'curl --remote-name https://raw.githubusercontent.com/meeps44/terraform-config/master/bash-scripts/ipv6-address-list.txt'
 salt '*' cmd.run 'curl --remote-name https://raw.githubusercontent.com/meeps44/terraform-config/master/bash-scripts/paris-traceroute-run-test.sh'
+salt '*' cmd.run 'bash paris-traceroute-run-test.sh'
 
 
 files needed on salt minions:
