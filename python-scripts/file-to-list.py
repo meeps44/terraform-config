@@ -32,3 +32,9 @@ json_file = json_file + ".json"
 
 with open(f'{json_file}', 'w') as fp:
     json.dump(my_dict, fp, indent=4)
+
+
+#TODO: Add Source IP dictionary field
+#TODO: Add time&date dictionary field
+#TODO: Add outgoing TCP port field
+#TODO: Add any other fields (packet metadata?)
