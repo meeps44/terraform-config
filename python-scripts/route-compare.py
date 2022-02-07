@@ -1,7 +1,7 @@
 import argparse, json, logging
 
 # set up logging:
-logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.BASIC_FORMAT)
+logging.basicConfig(filename='root/logs/comparison-logs/example.log', encoding='utf-8', level=logging.BASIC_FORMAT)
 
 # takes two json-files as input and compares the hop-list
 
