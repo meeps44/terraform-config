@@ -1,4 +1,7 @@
-import argparse, json
+import argparse, json, logging
+
+# set up logging:
+logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.BASIC_FORMAT)
 
 # takes two json-files as input and compares the hop-list
 
@@ -32,7 +35,8 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
             break
     
     if (result):
-        print("The routes are equal")
+        logging.info(f'Routes in file {args.file1} and {args.file2} are equal.')
+        # print("The routes are equal")
         if (args.v):
             print("Route 1: ")
             for k, v in data2['hops'].items():
@@ -41,7 +45,8 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
             for k, v in data1['hops'].items():
                 print(f"{k}:{v}")
     else:
-        print("The routes are not equal")
+        logging.info(f'Routes in file {args.file1} and {args.file2} are not equal!')
+        # print("The routes are not equal")
         if (args.v):
             print("Route 1: ")
             for k, v in data2['hops'].items():
