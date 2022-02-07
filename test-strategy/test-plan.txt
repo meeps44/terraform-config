@@ -1,0 +1,9 @@
+TODO: Add tcp destination port to json-file
+TODO: Add source ip to json-file
+
+The paris-traceroute will be executed from:
+
+From several VMs, each with a unique IPv6 IP, using the same flow-label value and port, to a single vantage point
+From several VMs, each with a unique IPv6 IP, using a different flow-label value
+From the same VM with a dynamic IPv6 flow-label value, to a single vantage-point
+From the same VM with a static IPv6 flow-label value, to a single vantage-point
