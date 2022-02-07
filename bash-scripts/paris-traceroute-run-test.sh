@@ -35,6 +35,8 @@ for flow_label in "${flow_labels[@]}"; do
 
         filename="$HOSTNAME-${date}-${short}.json"
         echo "$filename"
-        scp -i ~/.ssh/scp-key ../bash-scripts/${filename} 209.97.138.74:/root/logs/${HOSTNAME}/
+        # Create directory:
+        ssh -i ~/.ssh/scp-key 209.97.138.74 "mkdir -p /root/logs/${HOSTNAME}/${short}"
+        scp -i ~/.ssh/scp-key ../bash-scripts/${filename} 209.97.138.74:/root/logs/${HOSTNAME}/${short}
     done
 done
