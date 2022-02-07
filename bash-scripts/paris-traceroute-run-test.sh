@@ -27,7 +27,7 @@ for flow_label in "${flow_labels[@]}"; do
         echo "$filename"
         echo "$destination_address"
         echo "$host_ip"
-        #python3 /root/git/terraform-config/python-scripts/file-to-list.py ${filename} ${destination_port} ${host_ip}
+        python3 /root/git/terraform-config/python-scripts/file-to-list.py ../bash-scripts/${filename} ${destination_port} ${host_ip}
 
         # run script and create json-file. json-file is then sent to logserver via scp
         # on logserver we can then compare the files and log the result of the comparison
@@ -35,6 +35,6 @@ for flow_label in "${flow_labels[@]}"; do
 
         filename="$HOSTNAME-${date}-${short}.json"
         echo "$filename"
-        #scp -i ~/.ssh/scp-key ${filename} 209.97.138.74:/root/logs/${HOSTNAME}/
+        scp -i ~/.ssh/scp-key ../bash-scripts/${filename} 209.97.138.74:/root/logs/${HOSTNAME}/
     done
 done
