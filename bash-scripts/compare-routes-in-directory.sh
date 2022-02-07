@@ -5,7 +5,8 @@
 directory=$1
 
 for filename in ${directory}/*.json; do
+    firstFile=$filename
     # [ -e "$filename" ] || continue
-    [ python3 /root/git/terraform-config/python-scripts/route-compare.py "$filename" ] || continue
+    [ python3 /root/git/terraform-config/python-scripts/route-compare.py "$firstFile" "$filename" ] || continue
     # ... rest of the loop body
 done
