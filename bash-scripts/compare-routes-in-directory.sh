@@ -9,6 +9,8 @@ comparator=$2
 for filename in ${directory}/*.json; do
     # Check if file exists, if yes continue:
     [ -e "$filename" ] || continue
+    echo $filename
     # Run command
-    python3 /root/git/terraform-config/python-scripts/route-compare.py "$comparator" "$filename"
+    python3 /Users/admin/git/terraform-config/python-scripts/route-compare.py "$comparator" "$filename"
+    #python3 /root/git/terraform-config/python-scripts/route-compare.py "$comparator" "$filename"
 done

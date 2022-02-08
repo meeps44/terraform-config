@@ -1,7 +1,11 @@
 import argparse, json, logging
 
 # initialize logging:
-logging.basicConfig(filename='example.log', level=logging.DEBUG)
+#logging.basicConfig(filename='example.log', level=logging.DEBUG)
+logging.basicConfig(filename='example.log',
+format='%(asctime)s %(levelname)-8s %(message)s',
+level=logging.INFO,
+datefmt='%Y-%m-%d %H:%M:%S')
 
 # takes two json-files as input and compares the hop-list
 
@@ -35,8 +39,8 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
             break
     
     if (result):
-        logging.info(f'Routes in file {args.file1} and {args.file2} are equal.')
-        # print("The routes are equal")
+        logging.info(f"Routes in file {args.file1} and {args.file2} are equal.")
+        print("The routes are equal")
         if (args.v):
             print("Route 1: ")
             for k, v in data2['hops'].items():
@@ -46,7 +50,7 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
                 print(f"{k}:{v}")
     else:
         logging.info(f'Routes in file {args.file1} and {args.file2} are not equal!')
-        # print("The routes are not equal")
+        print("The routes are not equal")
         if (args.v):
             print("Route 1: ")
             for k, v in data2['hops'].items():
