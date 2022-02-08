@@ -4,6 +4,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("filepath")
 parser.add_argument("tcp_port")
 parser.add_argument("source_ip")
+parser.add_argument("flow_label")
 args = parser.parse_args()
 
 # "/Users/admin/Desktop/test-new.txt"
@@ -20,6 +21,7 @@ my_dict = {}
 my_dict["probe_uuid"] = str(uuid.uuid4())
 # my_dict["flow_label"] = 100
 my_dict["outgoing_tcp_port"] = args.tcp_port
+my_dict["flow_label"] = args.flow_label
 my_dict["timestamp"] = str(datetime.datetime.now())
 my_dict["source"] = args.source_ip
 my_dict["destination"] = dest
