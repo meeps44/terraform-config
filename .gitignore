@@ -5,4 +5,4 @@
 /terraform.tfstate.backup
 /python-scripts/example.log
 /bash-scripts/example.log
-/bash-scripts/json-files/*
+/bash-scripts/json-files/
