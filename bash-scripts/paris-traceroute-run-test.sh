@@ -14,7 +14,7 @@ host_ip=$(hostname -I | grep -o -E "((([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|(
 # destination_port="default"
 
 for flow_label in "${flow_labels[@]}"; do
-    cat /root/git/terraform-config/bash-scripts/ipv6-address-list.txt | while read line; do
+    cat ~/git/terraform-config/bash-scripts/ipv6-address-list.txt | while read line; do
         destination_address=$line
         hash=$(echo -n ${destination_address} | md5sum | awk '{print $1}')
         short="${hash:0:6}"
@@ -29,7 +29,7 @@ for flow_label in "${flow_labels[@]}"; do
         echo "$filename"
         echo "$destination_address"
         echo "$host_ip"
-        python3 /root/git/terraform-config/python-scripts/file-to-list.py ../bash-scripts/${filename} ${destination_port} ${host_ip} ${flow_label}
+        python3 ~/git/terraform-config/python-scripts/text-to-json.py ../bash-scripts/${filename} ${destination_port} ${host_ip} ${flow_label}
 
         # run script and create json-file. json-file is then sent to logserver via scp
         # on logserver we can then compare the files and log the result of the comparison
