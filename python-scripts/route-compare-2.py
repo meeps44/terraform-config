@@ -51,19 +51,19 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
         # print(f"{key}:{value}")
         try:
             if (data1['hops'][key] != data2['hops'][key]):
-                print("Route difference detected!")
-                logging.info(f"Compared files {file1} and {file2}\n \
-                File {file1} info:\n \
-                Source IP: {source_ip_1}\n \
-                Destination IP: {destination_ip_1}\n \
-                Flow label: {flow_label_1}\n \
-                Outbound TCP port: {tcp_port_1}\n \
-                File {file2} info:\n \
-                Source IP: {source_ip_2}\n \
-                Destination IP: {destination_ip_2}\n \
-                Flow label: {flow_label_2}\n \
-                Outbound TCP port: {tcp_port_2}\n \
-                Comparison result: The routes in {file1} and {file2} are NOT equal")
+                #print("Route difference detected!")
+                #logging.info(f"Compared files {file1.read()} and {file2.read()}\n \
+                #File {file1.read()} info:\n \
+                #Source IP: {source_ip_1}\n \
+                #Destination IP: {destination_ip_1}\n \
+                #Flow label: {flow_label_1}\n \
+                #Outbound TCP port: {tcp_port_1}\n \
+                #File {file2.read()} info:\n \
+                #Source IP: {source_ip_2}\n \
+                #Destination IP: {destination_ip_2}\n \
+                #Flow label: {flow_label_2}\n \
+                #Outbound TCP port: {tcp_port_2}\n \
+                #Comparison result: The routes in {file1.read()} and {file2.read()} are NOT equal")
                 result = False
                 break
             result = data1['hops'][key] == data2['hops'][key]
@@ -73,19 +73,18 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
             break
     
     if (result):
-        logging.info(f"Compared files {file1} and {file2}\n \
-        File {file1} info:\n \
+        logging.info(f"Compared files {args.file1} and {args.file2}\n \
+        {args.file1} info:\n \
         Source IP: {source_ip_1}\n \
         Destination IP: {destination_ip_1}\n \
         Flow label: {flow_label_1}\n \
         Outbound TCP port: {tcp_port_1}\n \
-        File {file2} info:\n \
+        {args.file2} info:\n \
         Source IP: {source_ip_2}\n \
         Destination IP: {destination_ip_2}\n \
         Flow label: {flow_label_2}\n \
         Outbound TCP port: {tcp_port_2}\n \
-        Comparison result: The routes in {file1} and {file2} are equal.")
-        logging.info(f"Routes in file {args.file1} and {args.file2} are equal.")
+        Comparison result: The routes are equal.")
         print("The routes are equal")
         if (args.v):
             print("Route 1: ")
@@ -95,19 +94,18 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
             for k, v in data1['hops'].items():
                 print(f"{k}:{v}")
     else:
-        logging.info(f"Compared files {file1} and {file2}\n \
-        File {file1} info:\n \
+        logging.info(f"Compared files {args.file1} and {args.file2}\n \
+        {args.file1} info:\n \
         Source IP: {source_ip_1}\n \
         Destination IP: {destination_ip_1}\n \
         Flow label: {flow_label_1}\n \
         Outbound TCP port: {tcp_port_1}\n \
-        File {file2} info:\n \
+        {args.file2} info:\n \
         Source IP: {source_ip_2}\n \
         Destination IP: {destination_ip_2}\n \
         Flow label: {flow_label_2}\n \
         Outbound TCP port: {tcp_port_2}\n \
-        Comparison result: The routes in {file1} and {file2} are NOT equal")
-        logging.info(f'Routes in file {args.file1} and {args.file2} are not equal!')
+        Comparison result: The routes are NOT equal!")
         print("The routes are not equal")
         if (args.v):
             print("Route 1: ")
