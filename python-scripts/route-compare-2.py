@@ -73,7 +73,7 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
             break
     
     if (result):
-        logging.info(f"Compared files {args.file1} and {args.file2}\n \
+        logging.info(f"\nCompared files {args.file1} and {args.file2}\n \
         {args.file1} info:\n \
         Source IP: {source_ip_1}\n \
         Destination IP: {destination_ip_1}\n \
@@ -94,7 +94,7 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
             for k, v in data1['hops'].items():
                 print(f"{k}:{v}")
     else:
-        logging.info(f"Compared files {args.file1} and {args.file2}\n \
+        logging.info(f"\nCompared files {args.file1} and {args.file2}\n \
         {args.file1} info:\n \
         Source IP: {source_ip_1}\n \
         Destination IP: {destination_ip_1}\n \
