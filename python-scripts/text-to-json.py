@@ -37,6 +37,8 @@ if json_file.endswith('.txt'):
 
 json_file = json_file + ".json"
 
+print(json_file)
+
 with open(f'{json_file}', 'w') as fp:
     json.dump(my_dict, fp, indent=4)
 
