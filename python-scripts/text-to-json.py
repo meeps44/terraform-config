@@ -1,7 +1,8 @@
-import json, uuid, argparse, datetime
+import json, uuid, argparse, datetime, os
 
 parser = argparse.ArgumentParser()
 parser.add_argument("filepath")
+parser.add_argument("hostname")
 parser.add_argument("tcp_port")
 parser.add_argument("source_ip")
 parser.add_argument("flow_label")
@@ -37,11 +38,17 @@ if json_file.endswith('.txt'):
 
 json_file = json_file + ".json"
 
-print(json_file)
+#print(os.path.basename(json_file))
 
-with open(f'{json_file}', 'w') as fp:
+#with open(f'{json_file}', 'w') as fp:
+    #json.dump(my_dict, fp, indent=4)
+
+path = f"~/logs/{args.hostname}/" + os.path.basename(json_file)
+
+print(path)
+
+with open(path, 'w') as fp:
     json.dump(my_dict, fp, indent=4)
-
 
 #TODO: Add Source IP dictionary field
 #TODO: Add time&date dictionary field
