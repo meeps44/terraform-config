@@ -43,7 +43,7 @@ json_file = json_file + ".json"
 #with open(f'{json_file}', 'w') as fp:
     #json.dump(my_dict, fp, indent=4)
 
-path = f"~/logs/{args.hostname}/" + os.path.basename(json_file)
+path = f'/root/logs/{args.hostname}/' + os.path.basename(json_file)
 
 print(path)
 
