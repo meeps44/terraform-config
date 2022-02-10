@@ -27,3 +27,6 @@ do
         #scp -i ~/.ssh/scp-key ../bash-scripts/${filename} 209.97.138.74:/root/logs/${HOSTNAME}/${short}
     done
 done < /root/git/terraform-config/bash-scripts/ipv6-address-list.txt
+
+# Create tarball
+#tar -czvf jsonfiles.tar.gz /root/logs/$HOSTNAME
