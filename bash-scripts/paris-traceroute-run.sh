@@ -8,7 +8,7 @@ host_ip=$(hostname -I | grep -o -E "((([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|(
 while IFS="" read -r p || [ -n "$p" ]
 do
     for flow_label in "${flow_labels[@]}"; do
-		destination_address=$line
+		destination_address=$p
         hash=$(echo -n ${destination_address} | md5sum | awk '{print $1}')
         short="${hash:0:6}"
         sudo paris-traceroute -T -p ${destination_port} "${flow_label}" "${destination_address}" > tmp.txt
