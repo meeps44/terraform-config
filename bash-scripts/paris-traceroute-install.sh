@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+mkdir -p ~/logs/$HOSTNAME
 mkdir ~/git
 cd ~/git
 git clone https://github.com/meeps44/libparistraceroute.git
