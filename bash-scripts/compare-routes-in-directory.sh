@@ -11,6 +11,8 @@ for filename in ${directory}/*.json; do
     [ -e "$filename" ] || continue
     echo $filename
     # Run command
-    python3 /Users/admin/git/terraform-config/python-scripts/route-compare.py "$comparator" "$filename"
+    python3 /home/erlend/git/terraform-config/python-scripts/route-compare-2.py "$comparator" "$filename"
+    #python3 /Users/admin/git/terraform-config/python-scripts/route-compare-2.py "$comparator" "$filename"
+
     #python3 /root/git/terraform-config/python-scripts/route-compare.py "$comparator" "$filename"
 done
