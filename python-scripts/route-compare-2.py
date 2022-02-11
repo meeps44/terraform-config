@@ -2,7 +2,7 @@ import argparse, json, logging
 
 # initialize logging:
 #logging.basicConfig(filename='example.log', level=logging.DEBUG)
-logging.basicConfig(filename='example.log',
+logging.basicConfig(filename='comparison_output.log',
 format='%(asctime)s %(levelname)-8s %(message)s',
 level=logging.INFO,
 datefmt='%Y-%m-%d %H:%M:%S')
