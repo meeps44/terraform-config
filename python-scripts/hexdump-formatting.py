@@ -1,4 +1,4 @@
-import re
+import re, ipaddress
 
 #new_regex = r"((([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n)"
 #regex_tmp = "(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+"
@@ -29,7 +29,14 @@ with open(my_file, "r") as file:
         #print(a[index])
 
         # get the destination address, flow label tuple from the output
-        tuple = (a[index][151:158].replace(" ", ""), (a[index][24:72].replace(" ", "")).replace("\n", ""))
+        #tuple = (a[index][151:158].replace(" ", ""), (a[index][24:72].replace(" ", "")).replace("\n", ""))
+
+        ip = (a[index][24:72].replace(" ", "")).replace("\n", "")
+
+        ipv6_addr = ipaddress.ip_address(int(ip, 16))
+        #print(ipv6_addr)
+
+        tuple = (str(ipv6_addr), a[index][151:158].replace(" ", ""))
         #print("Tuple:")
         #print(tuple)
         flow_label_list.append(tuple)
