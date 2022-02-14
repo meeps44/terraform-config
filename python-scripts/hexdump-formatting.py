@@ -30,11 +30,10 @@ with open(my_file, "r") as file:
 
         # get the destination address, flow label tuple from the output
         tuple = (a[index][151:158].replace(" ", ""), (a[index][24:72].replace(" ", "")).replace("\n", ""))
-        print("Tuple:")
-        print(tuple)
+        #print("Tuple:")
+        #print(tuple)
         flow_label_list.append(tuple)
 
-        # remove duplicate items from flow_label_list
-
-
-#print(flow_label_list)
+# remove duplicate items from flow_label_list
+flow_label_list = list(dict.fromkeys(flow_label_list))
+print(flow_label_list)
