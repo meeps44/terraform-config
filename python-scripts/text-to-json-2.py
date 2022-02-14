@@ -24,13 +24,13 @@ flow_label_list = []
 reg = r"((([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+([0-9a-fA-F]+))+"
 pattern = re.compile(reg)
 
-parser = argparse.ArgumentParser()
-parser.add_argument("file")
-parser.add_argument("hostname")
-parser.add_argument("tcp_port")
-parser.add_argument("source_ip")
-parser.add_argument("sent_flow_label")
-args = parser.parse_args()
+#parser = argparse.ArgumentParser()
+#parser.add_argument("file")
+#parser.add_argument("hostname")
+#parser.add_argument("tcp_port")
+#parser.add_argument("source_ip")
+#parser.add_argument("sent_flow_label")
+#args = parser.parse_args()
 
 with open(file, "r") as my_file:
     data = my_file.read()
@@ -66,24 +66,37 @@ with open(file, "r") as my_file:
 
     #hop_list = my_file.read().splitlines() 
     hop_list = re.findall(IPV6ADDR, data) 
-
+    # remove duplicates
+    hop_list = list( dict.fromkeys(hop_list) )
     # Remove first item in the list (the destination address) and add it as separate dictionary element
     dest = hop_list.pop(0)
+
+    print("Hop list:")
+    print(hop_list)
 
     # Create top-level dictionary
     my_dict = {}
     #my_dict["probe_uuid"] = str(uuid.uuid4())
     #my_dict["flow_label"] = 100
-    my_dict["outgoing_tcp_port"] = args.tcp_port
-    my_dict["flow_label"] = args.sent_flow_label
-    my_dict["timestamp"] = str(datetime.datetime.now())
-    my_dict["source"] = args.source_ip
-    my_dict["destination"] = dest
+
+    #my_dict["outgoing_tcp_port"] = args.tcp_port
+    #my_dict["flow_label"] = args.sent_flow_label
+    #my_dict["timestamp"] = str(datetime.datetime.now())
+    #my_dict["source"] = args.source_ip
+    #my_dict["destination"] = dest
 
     count = 0 # in case items is empty and you need it after the loop
     #hop_dictionary = { index : item for index, item in enumerate(hop_list, start=1) }
-    hop_dictionary = { index : {address : "null"} for index, address in enumerate(hop_list, start=1) if (address == flow_label_list[0][0])}
-    hop_dictionary = { index : {address : flow_label_list[index][1]} for index, address in enumerate(hop_list, start=1) if (address == flow_label_list[0][0])}
+    #hop_dictionary = { index : {address : flow_label_list[index][1]} for index, address in enumerate(hop_list, start=1) if (address == flow_label_list[0][0])}
+
+    # Initialize hop dictionary
+    hop_dictionary = { index : {address : "null"} for index, address in enumerate(hop_list, start=1)}
+    index = 0
+    for item in hop_list:
+        hop_dictionary[index+1][item] = flow_label_list[index][1] 
+        index = index + 1
+
+    print(hop_dictionary)
 
 #my_dict["hops"] = hop_dictionary
 
