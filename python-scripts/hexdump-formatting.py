@@ -29,7 +29,7 @@ with open(my_file, "r") as file:
         #print(a[index])
 
         # get the destination address, flow label tuple from the output
-        tuple = (a[index][160:165], a[index][25:49])
+        tuple = (a[index][151:158], a[index][24:72])
         print("Tuple:")
         print(tuple)
         flow_label_list.append(tuple)
