@@ -14,4 +14,14 @@ with open(my_file, "r") as file:
     data = file.read()
     a = ["".join(x) for x in re.findall(pattern, data)]
     # result = re.findall(pattern, data)
-    print(a)
+
+    #size = len(a[0])
+    #print(a[0][:size - 37])
+    #print(a[1][:size - 37])
+
+    for index, item in enumerate(a):
+        size = len(a[index])
+        #print(a[index][:size - 37])
+        a[index] = a[index][:size - 37]
+        print(f"Index:\t{index}")
+        print(a[index])
