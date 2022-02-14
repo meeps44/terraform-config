@@ -1,4 +1,4 @@
-import json, uuid, argparse, datetime, os, re, subprocess
+import json, uuid, argparse, datetime, os, re, subprocess, ipaddress
 
 IPV4SEG  = r'(?:25[0-5]|(?:2[0-4]|1{0,1}[0-9]){0,1}[0-9])'
 IPV4ADDR = r'(?:(?:' + IPV4SEG + r'\.){3,3}' + IPV4SEG + r')'
@@ -20,45 +20,73 @@ IPV6GROUPS = (
 IPV6ADDR = '|'.join(['(?:{})'.format(g) for g in IPV6GROUPS[::-1]])  # Reverse rows for greedy match
 
 file = "/home/erlend/git/terraform-config/python-scripts/example-output/example-output-1.txt"
+flow_label_list = []
+reg = r"((([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+([0-9a-fA-F]+))+"
+pattern = re.compile(reg)
 
-#parser = argparse.ArgumentParser()
-#parser.add_argument("file")
-#parser.add_argument("hostname")
-#parser.add_argument("tcp_port")
-#parser.add_argument("source_ip")
-#parser.add_argument("flow_label")
-#args = parser.parse_args()
-
-# "/Users/admin/Desktop/test-new.txt"
-
+parser = argparse.ArgumentParser()
+parser.add_argument("file")
+parser.add_argument("hostname")
+parser.add_argument("tcp_port")
+parser.add_argument("source_ip")
+parser.add_argument("sent_flow_label")
+args = parser.parse_args()
 
 with open(file, "r") as my_file:
     data = my_file.read()
-    result = re.findall(IPV6ADDR, data)
+    
+    # create list of returned flow-labels
+    flow_labels = ["".join(x) for x in re.findall(pattern, data)]
+
+    for index, item in enumerate(flow_labels):
+        size = len(flow_labels[index])
+        #print(a[index][:size - 37])
+        flow_labels[index] = flow_labels[index][:size - 37]
+        #print(f"Index:\t{index}")
+        #print(a[index])
+
+        # get the destination address, flow label tuple from the output
+        #tuple = (a[index][151:158].replace(" ", ""), (a[index][24:72].replace(" ", "")).replace("\n", ""))
+
+        ip = (flow_labels[index][24:72].replace(" ", "")).replace("\n", "")
+
+        ipv6_addr = ipaddress.ip_address(int(ip, 16))
+        #print(ipv6_addr)
+
+        tuple = (str(ipv6_addr), flow_labels[index][151:158].replace(" ", ""))
+        #print("Tuple:")
+        #print(tuple)
+        flow_label_list.append(tuple)
+    
+    # remove duplicate items from flow_label_list
+    flow_label_list = list(dict.fromkeys(flow_label_list))
+
+    #result = re.findall(IPV6ADDR, data)
     #print(result)
 
-    hop_list = my_file.read().splitlines() 
+    #hop_list = my_file.read().splitlines() 
+    hop_list = re.findall(IPV6ADDR, data) 
 
-# Remove first item in the list (the destination address) and add it as separate dictionary element
-#dest = hop_list.pop(0)
-#dest_dict = { "destination": dest}
+    # Remove first item in the list (the destination address) and add it as separate dictionary element
+    dest = hop_list.pop(0)
 
-## Create top-level dictionary
-#my_dict = {}
-#my_dict["probe_uuid"] = str(uuid.uuid4())
-## my_dict["flow_label"] = 100
-#my_dict["outgoing_tcp_port"] = args.tcp_port
-#my_dict["flow_label"] = args.flow_label
-#my_dict["timestamp"] = str(datetime.datetime.now())
-#my_dict["source"] = args.source_ip
-#my_dict["destination"] = dest
+    # Create top-level dictionary
+    my_dict = {}
+    #my_dict["probe_uuid"] = str(uuid.uuid4())
+    #my_dict["flow_label"] = 100
+    my_dict["outgoing_tcp_port"] = args.tcp_port
+    my_dict["flow_label"] = args.sent_flow_label
+    my_dict["timestamp"] = str(datetime.datetime.now())
+    my_dict["source"] = args.source_ip
+    my_dict["destination"] = dest
 
-#count = 0 # in case items is empty and you need it after the loop
-#hop_dictionary = { index : item for index, item in enumerate(hop_list, start=1) }
+    count = 0 # in case items is empty and you need it after the loop
+    #hop_dictionary = { index : item for index, item in enumerate(hop_list, start=1) }
+    hop_dictionary = { index : {address : "x"} for index, address in enumerate(hop_list, start=1) }
 
 #my_dict["hops"] = hop_dictionary
 
-#json_file = args.filepath
+#json_file = args.file
 #if json_file.endswith('.txt'):
     #json_file = json_file[:-4]
 
