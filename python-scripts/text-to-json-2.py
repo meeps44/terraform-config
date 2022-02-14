@@ -82,7 +82,8 @@ with open(file, "r") as my_file:
 
     count = 0 # in case items is empty and you need it after the loop
     #hop_dictionary = { index : item for index, item in enumerate(hop_list, start=1) }
-    hop_dictionary = { index : {address : "x"} for index, address in enumerate(hop_list, start=1) }
+    hop_dictionary = { index : {address : "null"} for index, address in enumerate(hop_list, start=1) if (address == flow_label_list[0][0])}
+    hop_dictionary = { index : {address : flow_label_list[index][1]} for index, address in enumerate(hop_list, start=1) if (address == flow_label_list[0][0])}
 
 #my_dict["hops"] = hop_dictionary
 
