@@ -29,7 +29,7 @@ with open(my_file, "r") as file:
         #print(a[index])
 
         # get the destination address, flow label tuple from the output
-        tuple = (a[index][151:158], a[index][24:72])
+        tuple = (a[index][151:158].replace(" ", ""), (a[index][24:72].replace(" ", "")).replace("\n", ""))
         print("Tuple:")
         print(tuple)
         flow_label_list.append(tuple)
@@ -37,4 +37,4 @@ with open(my_file, "r") as file:
         # remove duplicate items from flow_label_list
 
 
-print(flow_label_list)
+#print(flow_label_list)
