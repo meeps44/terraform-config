@@ -1,7 +1,7 @@
 import argparse, json, logging
 
 # initialize logging:
-logging.basicConfig(filename='comparison_output.log',
+logging.basicConfig(filename='/root/logs/comparison_output.log',
 format='%(asctime)s %(levelname)-8s %(message)s',
 level=logging.INFO,
 datefmt='%Y-%m-%d %H:%M:%S')
