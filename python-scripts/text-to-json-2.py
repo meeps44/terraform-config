@@ -19,7 +19,7 @@ IPV6GROUPS = (
 )
 IPV6ADDR = '|'.join(['(?:{})'.format(g) for g in IPV6GROUPS[::-1]])  # Reverse rows for greedy match
 
-file = "/home/erlend/git/terraform-config/python-scripts/example-output/example-output-1.txt"
+#file = "/home/erlend/git/terraform-config/python-scripts/example-output/example-output-1.txt"
 flow_label_list = []
 reg = r"((([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+\n(([0-9a-fA-F]+) )+([0-9a-fA-F]+))+"
 pattern = re.compile(reg)
@@ -31,6 +31,8 @@ parser.add_argument("tcp_port")
 parser.add_argument("source_ip")
 parser.add_argument("flow_label")
 args = parser.parse_args()
+
+file = argparse.file
 
 # file parsing starts here
 with open(file, "r") as my_file:
