@@ -57,7 +57,7 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
         Flow label: {flow_label_2}\n \
         Outbound TCP port: {tcp_port_2}\n \
         Comparison result: The routes are equal.")
-        print("The routes and returned flow-labels are equal")
+        print("The routes are equal")
         if (args.v):
             print("Route 1: ")
             for k, v in data2['hops'].items():
