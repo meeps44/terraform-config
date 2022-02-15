@@ -32,7 +32,7 @@ parser.add_argument("source_ip")
 parser.add_argument("flow_label")
 args = parser.parse_args()
 
-file = argparse.file
+file = args.file
 
 # file parsing starts here
 with open(file, "r") as my_file:
