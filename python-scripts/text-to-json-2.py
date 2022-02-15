@@ -97,7 +97,7 @@ with open(file, "r") as my_file:
     index = 0
     for item in hop_list:
         if hop_dictionary[index+1]["ipv6_address"] == item:
-            hop_dictionary[index+1]["returned_flow_label"] = flow_label_list[index][1] 
+            hop_dictionary[index+1]["returned_flow_label"] = int(flow_label_list[index][1], 16)
         index = index + 1
 
     print("Hop dictionary:")
