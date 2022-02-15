@@ -32,12 +32,12 @@ parser.add_argument("source_ip")
 parser.add_argument("flow_label")
 args = parser.parse_args()
 
+# file parsing starts here
 with open(file, "r") as my_file:
     data = my_file.read()
     
-    # create list of returned flow-labels
+    # create and populate list of returned flow-labels as a (ipv6-address, returned_flow_label) tuple
     flow_labels = ["".join(x) for x in re.findall(pattern, data)]
-
     for index, item in enumerate(flow_labels):
         size = len(flow_labels[index])
         #print(a[index][:size - 37])
@@ -64,6 +64,7 @@ with open(file, "r") as my_file:
     #result = re.findall(IPV6ADDR, data)
     #print(result)
 
+    # create hop-list (list of ipv6_addresses in path)
     #hop_list = my_file.read().splitlines() 
     hop_list = re.findall(IPV6ADDR, data) 
     # remove duplicates
