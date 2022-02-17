@@ -6,7 +6,7 @@
 # against all files in its current directory
 comparator=$1
 
-directory="$(dirname "${comparator}")"
+directory="$(dirname "${comparator}")/"
 echo "$directory"
 
 #directory=$1
