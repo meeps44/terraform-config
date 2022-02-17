@@ -25,3 +25,5 @@ for filename in ${directory}*.json; do
     # python3 /Users/admin/git/terraform-config/python-scripts/route-compare-2.py "$comparator" "$filename"
     python3 /root/git/terraform-config/python-scripts/route-compare-3.py "$comparator" "$filename"
 done
+
+echo "Route comparison complete. Results written to logfile:    /root/logs/comparison_output.log"

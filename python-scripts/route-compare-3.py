@@ -87,6 +87,3 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
             print("Route 2: ")
             for k, v in data1['hops'].items():
                 print(f"{k}:{v}")
-
-
-print(f"Route comparison complete. Results written to logfile:\t/root/logs/comparison_output.log")
