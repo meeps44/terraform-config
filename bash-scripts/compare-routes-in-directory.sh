@@ -6,6 +6,9 @@
 # against all files in its current directory
 comparator=$1
 
+directory="$(dirname "${comparator}")"
+echo "$directory"
+
 #directory=$1
 # comparator = the base file we want to compare against
 #comparator=$2
