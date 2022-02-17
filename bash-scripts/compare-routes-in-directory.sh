@@ -2,9 +2,13 @@
 
 # ref: https://stackoverflow.com/questions/20796200/how-to-loop-over-files-in-directory-and-change-path-and-add-suffix-to-filename
 
-directory=$1
+# comparator = the full path to the base file we want to compare against. The route in the comparator will be compared 
+# against all files in its current directory
+comparator=$1
+
+#directory=$1
 # comparator = the base file we want to compare against
-comparator=$2
+#comparator=$2
 
 echo "Starting route comparison"
 
@@ -13,7 +17,8 @@ for filename in ${directory}*.json; do
     [ -e "$filename" ] || continue
     # Run command
     echo "Comparing route"
-    python3 /home/erlend/git/terraform-config/python-scripts/route-compare-2.py "${directory}/$comparator" "$filename"
+    python3 /home/erlend/git/terraform-config/python-scripts/route-compare-2.py "$comparator" "$filename"
+    # python3 /home/erlend/git/terraform-config/python-scripts/route-compare-2.py "${directory}/$comparator" "$filename"
     #python3 /Users/admin/git/terraform-config/python-scripts/route-compare-2.py "$comparator" "$filename"
 
     #python3 /root/git/terraform-config/python-scripts/route-compare.py "$comparator" "$filename"
