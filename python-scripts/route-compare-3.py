@@ -1,8 +1,7 @@
 import argparse, json, logging
 
 # initialize logging:
-#logging.basicConfig(filename='example.log', level=logging.DEBUG)
-logging.basicConfig(filename='comparison_output.log',
+logging.basicConfig(filename='/root/logs/comparison_output.log',
 format='%(asctime)s %(levelname)-8s %(message)s',
 level=logging.INFO,
 datefmt='%Y-%m-%d %H:%M:%S')
@@ -27,46 +26,19 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
     destination_ip_1 = data1['destination']
     tcp_port_1 = data1['outgoing_tcp_port']
     flow_label_1 = data1['flow_label']
+    #returned_flow_label_1 = data1['hops']
 
     source_ip_2 = data2['source']
     destination_ip_2 = data2['destination']
     tcp_port_2 = data2['outgoing_tcp_port']
     flow_label_2 = data2['flow_label']
-    #Compared files {file1} and {file2}
-    #File {file1} info:
-    #Source IP: {source_ip}
-    #Destination IP: {destination_ip}
-    #Flow label: {flow_label}
-    #Outbound TCP port: {tcp_port}
-    #File {file2} info:
-    #Source IP: {source_ip}
-    #Destination IP: {destination_ip}
-    #Flow label: {flow_label}
-    #Outbound TCP port: {tcp_port}
-    #Comparison result: The routes in {file1} and {file2} are equal / NOT equal
-
-    # result = data1['hops']['2'] == data2['hops']['2']
 
     for key, value in data1['hops'].items():
-        # print(f"{key}:{value}")
         try:
-            if (data1['hops'][key] != data2['hops'][key]):
-                #print("Route difference detected!")
-                #logging.info(f"Compared files {file1.read()} and {file2.read()}\n \
-                #File {file1.read()} info:\n \
-                #Source IP: {source_ip_1}\n \
-                #Destination IP: {destination_ip_1}\n \
-                #Flow label: {flow_label_1}\n \
-                #Outbound TCP port: {tcp_port_1}\n \
-                #File {file2.read()} info:\n \
-                #Source IP: {source_ip_2}\n \
-                #Destination IP: {destination_ip_2}\n \
-                #Flow label: {flow_label_2}\n \
-                #Outbound TCP port: {tcp_port_2}\n \
-                #Comparison result: The routes in {file1.read()} and {file2.read()} are NOT equal")
+            if (data1['hops'][key]['ipv6_address'] != data2['hops'][key]['ipv6_address']):
                 result = False
                 break
-            result = data1['hops'][key] == data2['hops'][key]
+            result = data1['hops'][key]['ipv6_address'] == data2['hops'][key]['ipv6_address']
         except KeyError:
             print("KeyError")
             result = False
