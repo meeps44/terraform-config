@@ -6,6 +6,7 @@ format='%(asctime)s %(levelname)-8s %(message)s',
 level=logging.INFO,
 datefmt='%Y-%m-%d %H:%M:%S')
 
+
 # takes two json-files as input and compares the hop-list
 
 parser = argparse.ArgumentParser()
@@ -86,3 +87,6 @@ with open(args.file1, "r") as file1, open(args.file2, "r") as file2:
             print("Route 2: ")
             for k, v in data1['hops'].items():
                 print(f"{k}:{v}")
+
+
+print(f"Route comparison complete. Results written to logfile:\t/root/logs/comparison_output.log")
