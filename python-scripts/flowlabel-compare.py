@@ -27,7 +27,6 @@ if args.file:
         print(args.file)
         with open(args.file, "r") as file:
             data = json.load(file)
-            print(data["hops"][1])
             destination_ip = data['destination']
             source_flow_label = int(data['flow_label'])
             tcp_port = data['outgoing_tcp_port']
@@ -65,7 +64,6 @@ if args.directory:
             if (os.path.isfile(os.path.join(args.directory, filename))):
                 with open(os.path.join(args.directory, filename), 'r') as file:
                     data = json.load(file)
-                    print(data["hops"][1])
                     destination_ip = data['destination']
                     source_flow_label = int(data['flow_label'])
                     tcp_port = data['outgoing_tcp_port']
