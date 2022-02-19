@@ -30,6 +30,8 @@ if args.file:
             destination_ip = data['destination']
             source_flow_label = int(data['flow_label'])
             tcp_port = data['outgoing_tcp_port']
+            flow_label_changed = False
+            hop_list = [] 
 
             for key, value in data['hops'].items():
                 try:
@@ -37,26 +39,31 @@ if args.file:
                         flow_label_changed = True
                         hop_number = key
                         hop_ip = data['hops'][key]['ipv6_address'] 
-                        logging.info(f"\Checked file {args.file}\n \
-                        Comparison result:\n \
-                        Destination IP: {destination_ip}\n \
-                        Source Flow label: {source_flow_label}\n \
-                        Outbound TCP port: {tcp_port}\n \
-                        Change in flow-label detected at hop number: {hop_number}\n \
-                        with hop-IP: {hop_ip}\n \
-                        The flow-label was changed while traversing the path to destination {destination_ip}.")
-                        print(f"The flow-label was changed while traversing the path to destination {destination_ip}.")
-                    else:
-                        flow_label_changed = False
-                        logging.info(f"\nChecked file {args.file}\n \
-                        Comparison result: The flow-label was not changed while traversing the path to destination {destination_ip}.")
-                        print(f"The flow-label was not changed while traversing the path to destination {destination_ip}.")
+                        hop_list.append((hop_number, hop_ip))
+
                 except KeyError:
                     print("KeyError")
                     exit(1)
+
+            if (flow_label_changed):
+                for item in hop_list:
+                    print(f"The flow-label was changed while traversing the path to destination {destination_ip}.")
+                    logging.info(f"\Checked file {args.file}\n \
+                    Comparison result:\n \
+                    Destination IP: {destination_ip}\n \
+                    Source Flow label: {source_flow_label}\n \
+                    Outbound TCP port: {tcp_port}\n \
+                    Change in flow-label detected at hop number: {item[0]}\n \
+                    with hop-IP: {item[1]}\n \
+                    The flow-label was changed while traversing the path to destination {destination_ip}.")
+            else:
+                print(f"The flow-label was not changed while traversing the path to destination {destination_ip}.")
+                logging.info(f"\nChecked file {args.file}\n \
+                Comparison result: The flow-label was not changed while traversing the path to destination {destination_ip}.")
     else:
         print(f"Error: '{args.file}' is not a file")
         exit(1)
+
 
 if args.directory:
     try:
