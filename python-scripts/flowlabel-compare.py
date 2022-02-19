@@ -6,7 +6,7 @@ import logging, argparse, json
 # and source flow-label is logged to a log-file.
 
 # initialize logging:
-logging.basicConfig(filename='/root/logs/comparison_output.log',
+logging.basicConfig(filename='/root/logs/flowlabel_compare.log',
 format='%(asctime)s %(levelname)-8s %(message)s',
 level=logging.INFO,
 datefmt='%Y-%m-%d %H:%M:%S')
