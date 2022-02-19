@@ -60,17 +60,44 @@ if args.file:
         exit(1)
 
 if args.directory:
-	try:
-		for filename in os.listdir(args.directory):
-			if (os.path.isfile(os.path.join(args.directory, filename))):
-				with open(os.path.join(args.directory, filename), 'r') as f:
-					print(filename)
-					#text = f.read()
-					#print(text)
-	except FileNotFoundError:
-		print("Error: No such file or directory")
-		exit(1)
-	except NotADirectoryError:
-		print("Error: Not a directory")
-		print("Please use the --file option to compare single files. Use the -h argument for more info.")
-		exit(1)
+    try:
+        for filename in os.listdir(args.directory):
+            if (os.path.isfile(os.path.join(args.directory, filename))):
+                with open(os.path.join(args.directory, filename), 'r') as file:
+                    print(filename)
+                    data = json.load(file)
+                    print(data["hops"][1])
+                    destination_ip = data['destination']
+                    source_flow_label = int(data['flow_label'])
+                    tcp_port = data['outgoing_tcp_port']
+
+                    for key, value in data['hops'].items():
+                        try:
+                            if (data['hops'][key]['returned_flow_label'] != source_flow_label):
+                                flow_label_changed = True
+                                hop_number = key
+                                hop_ip = data['hops'][key]['ipv6_address'] 
+                                logging.info(f"\Checked file {args.file}\n \
+                                Comparison result:\n \
+                                Destination IP: {destination_ip}\n \
+                                Source Flow label: {source_flow_label}\n \
+                                Outbound TCP port: {tcp_port}\n \
+                                Change in flow-label detected at hop number: {hop_number}\n \
+                                with hop-IP: {hop_ip}\n \
+                                The flow-label was changed while traversing the path to destination {destination_ip}.")
+                                print(f"The flow-label was changed while traversing the path to destination {destination_ip}.")
+                            else:
+                                flow_label_changed = False
+                                logging.info(f"\nChecked file {args.file}\n \
+                                Comparison result: The flow-label was not changed while traversing the path to destination {destination_ip}.")
+                                print(f"The flow-label was not changed while traversing the path to destination {destination_ip}.")
+                        except KeyError:
+                            print("KeyError")
+                            exit(1)
+    except FileNotFoundError:
+        print("Error: No such file or directory")
+        exit(1)
+    except NotADirectoryError:
+        print("Error: Not a directory")
+        print("Please use the --file option to compare single files. Use the -h argument for more info.")
+        exit(1)
