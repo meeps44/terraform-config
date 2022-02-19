@@ -17,10 +17,16 @@ parser.add_argument("--log", "-l", const='/root/logs/flowlabel_compare.log', nar
 args = parser.parse_args()
 
 # initialize logging:
-logging.basicConfig(filename=args.log,
+logging.basicConfig(filename='/root/logs/flowlabel_compare.log',
 format='%(asctime)s %(levelname)-8s %(message)s',
 level=logging.INFO,
 datefmt='%Y-%m-%d %H:%M:%S')
+
+# initialize logging:
+#logging.basicConfig(filename=args.log,
+#format='%(asctime)s %(levelname)-8s %(message)s',
+#level=logging.INFO,
+#datefmt='%Y-%m-%d %H:%M:%S')
 
 if args.file:
     if os.path.isfile(args.file):
