@@ -1,8 +1,5 @@
 import logging, argparse, json, os
 
-# TODO: Implement option to give argument directory or argument file. 
-# If given a directory as arugment, run the comparison on all files in directory.
-
 # Opens a log-file (.json) and checks if the flow-label has changed at any point 
 # in the path to the destination.
 # The result of the comparison, along with the filename, destination IP, TCP port-number
@@ -64,7 +61,6 @@ if args.directory:
         for filename in os.listdir(args.directory):
             if (os.path.isfile(os.path.join(args.directory, filename))):
                 with open(os.path.join(args.directory, filename), 'r') as file:
-                    print(filename)
                     data = json.load(file)
                     print(data["hops"][1])
                     destination_ip = data['destination']
