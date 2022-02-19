@@ -5,19 +5,22 @@ import logging, argparse, json, os
 # The result of the comparison, along with the filename, destination IP, TCP port-number
 # and source flow-label is logged to a log-file.
 
-# initialize logging:
-logging.basicConfig(filename='/root/logs/flowlabel_compare.log',
-format='%(asctime)s %(levelname)-8s %(message)s',
-level=logging.INFO,
-datefmt='%Y-%m-%d %H:%M:%S')
 
 default_dir = os.getcwd()
 
+# initialize argument parsing
 parser = argparse.ArgumentParser()
 parser.add_argument("--directory", "-dir", "-d", const=default_dir, nargs='?', help="Directory containing json log files that you would like to run the flow-label check on")
 parser.add_argument("--file", "-f", help="Json file that you would like to run the flow-label check on")
+parser.add_argument("--log", "-l", const='/root/logs/flowlabel_compare.log', nargs='?', help="Specify a logfile. Default = /root/logs/flowlabel_compare.log")
 #parser.add_argument('-v', '-V', '--v', '--V', action='store_true')  # verbose mode. currently not implemented
 args = parser.parse_args()
+
+# initialize logging:
+logging.basicConfig(filename=args.log,
+format='%(asctime)s %(levelname)-8s %(message)s',
+level=logging.INFO,
+datefmt='%Y-%m-%d %H:%M:%S')
 
 if args.file:
     if os.path.isfile(args.file):
