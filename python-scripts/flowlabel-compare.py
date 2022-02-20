@@ -54,16 +54,19 @@ if args.file:
             if (flow_label_changed):
                 for item in hop_list:
                     print(f"The flow-label was changed while traversing the path to destination {destination_ip}.")
+                    # logging.info(f"Checked file {args.file}. Comparison result: The flow label changed") # short version
                     logging.info(f"\Checked file {args.file}\n \
                     Comparison result:\n \
                     Destination IP: {destination_ip}\n \
                     Source Flow label: {source_flow_label}\n \
                     Outbound TCP port: {tcp_port}\n \
                     Change in flow-label detected at hop number: {item[0]}\n \
-                    with hop-IP: {item[1]}\n \
+                    From hop-IP: {item[1]}\n \
+                    New flow-label: {item[1]}\n \
                     The flow-label was changed while traversing the path to destination {destination_ip}.")
             else:
                 print(f"The flow-label was not changed while traversing the path to destination {destination_ip}.")
+                # logging.info(f"Checked file {args.file}. Comparison result: The flow label did not change") # short version
                 logging.info(f"\nChecked file {args.file}\n \
                 Comparison result: The flow-label was not changed while traversing the path to destination {destination_ip}.")
     else:
