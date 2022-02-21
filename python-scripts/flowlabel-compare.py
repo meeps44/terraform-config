@@ -57,7 +57,8 @@ if args.file:
 
             if (flow_label_changed):
                 for item in hop_list:
-                    print(f"File: {args.file}: The flow-label changed in transit. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                    print(f"File: {args.file}: Change in flow-label detected at hop {item[0]}. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                    #print(f"File: {args.file}: The flow-label changed in transit. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
                     #print(f"The flow-label was changed while traversing the path to destination {destination_ip}.")
                     if args.verbose:
                         logging.info(f"\Checked file {args.file}\n \
@@ -70,12 +71,14 @@ if args.file:
                         New flow-label: {item[2]}\n \
                         The flow-label was changed while traversing the path to destination {destination_ip}.")
                     else:
-                        logging.info(f"\nFile:\t{args.file}: The flow-label was changed while traversing the path to destination {destination_ip}. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                        logging.info(f"File: {args.file}: Change in flow-label detected at hop {item[0]}. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
             else:
                 print(f"File: {args.file}: The flow-label did not change in transit.")
                 #print(f"File:\t{args.file}: The flow-label was not changed while traversing the path to destination {destination_ip}.")
                 # logging.info(f"Checked file {args.file}. Comparison result: The flow label did not change") # short version
-                logging.info(f"\nFile: {args.file}: The flow-label did not change in transit.")
+                logging.info(f"File: {args.file}: The flow-label did not change in transit.")
+            
+            print("Comparison completed. Results logged to: /root/logs/flowlabel_compare.log")
     else:
         print(f"Error: '{args.file}' is not a file")
         exit(1)
@@ -110,7 +113,8 @@ if args.directory:
                     if (flow_label_changed):
                         for item in hop_list:
                             #print(f"File:\t{filename}: The flow-label was changed while traversing the path to destination {destination_ip}. \nSent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
-                            print(f"File: {filename}: The flow-label changed in transit. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                            print(f"File: {filename}: Change in flow-label detected at hop {item[0]}. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                            #print(f"File: {filename}: The flow-label changed in transit. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
                             if args.verbose:
                                 logging.info(f"\Checked file {filename}\n \
                                 Comparison result:\n \
@@ -122,12 +126,14 @@ if args.directory:
                                 New flow-label: {item[2]}\n \
                                 The flow-label was changed while traversing the path to destination {destination_ip}.")
                             else:
-                                logging.info(f"\nFile:\t{filename}: The flow-label changed in transit to destination {destination_ip}. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                                logging.info(f"File: {filename}: Change in flow-label detected at hop {item[0]}. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
                     else:
                         print(f"File: {filename}: The flow-label did not change in transit.")
                         # print(f"File:\t{filename}: The flow-label was not changed while traversing the path to destination {destination_ip}.")
                         # logging.info(f"Checked file {args.file}. Comparison result: The flow label did not change") # short version
-                        logging.info(f"\nFile: {filename}: The flow-label did not change in transit.")
+                        logging.info(f"File: {filename}: The flow-label did not change in transit.") 
+
+                print("Comparison completed. Results logged to: /root/logs/flowlabel_compare.log")
     except FileNotFoundError:
         print("Error: No such file or directory")
         exit(1)
