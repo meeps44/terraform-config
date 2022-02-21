@@ -74,8 +74,8 @@ with open(file, "r") as my_file:
     # Remove first item in the list (the destination address) and add it as separate dictionary element
     dest = hop_list.pop(0)
 
-    print("Hop list:")
-    print(hop_list)
+    #print("Hop list:")
+    #print(hop_list)
 
     # Create top-level dictionary
     my_dict = {}
@@ -117,4 +117,4 @@ path = f'/root/logs/{args.hostname}/' + os.path.basename(json_file)
 
 with open(path, 'w') as fp:
     json.dump(my_dict, fp, indent=4)
-    print(f"File {path} saved to disk")
+    print(f"File {path} successfully saved to disk")
