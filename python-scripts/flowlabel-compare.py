@@ -85,6 +85,7 @@ if args.directory:
         for file in os.listdir(args.directory):
             if (os.path.isfile(os.path.join(args.directory, file))):
                 with open(os.path.join(args.directory, file), 'r') as file:
+                    filename = str(file)
                     data = json.load(file)
                     destination_ip = data['destination']
                     source_flow_label = int(data['flow_label'])
@@ -107,9 +108,9 @@ if args.directory:
 
                     if (flow_label_changed):
                         for item in hop_list:
-                            print(f"File:\t{args.file}: The flow-label was changed while traversing the path to destination {destination_ip}. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                            print(f"File:\t{filename}: The flow-label was changed while traversing the path to destination {destination_ip}. \nSent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
                             if args.verbose:
-                                logging.info(f"\Checked file {args.file}\n \
+                                logging.info(f"\Checked file {filename}\n \
                                 Comparison result:\n \
                                 Destination IP: {destination_ip}\n \
                                 Source Flow label: {source_flow_label}\n \
@@ -119,11 +120,11 @@ if args.directory:
                                 New flow-label: {item[2]}\n \
                                 The flow-label was changed while traversing the path to destination {destination_ip}.")
                             else:
-                                logging.info(f"File:\t{args.file}: The flow-label was changed while traversing the path to destination {destination_ip}. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                                logging.info(f"File:\t{filename}: The flow-label was changed while traversing the path to destination {destination_ip}. \nSent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
                     else:
-                        print(f"File:\t{file}: The flow-label was not changed while traversing the path to destination {destination_ip}.")
+                        print(f"File:\t{filename}: The flow-label was not changed while traversing the path to destination {destination_ip}.")
                         # logging.info(f"Checked file {args.file}. Comparison result: The flow label did not change") # short version
-                        logging.info(f"\nChecked file {file}\n \
+                        logging.info(f"\nChecked file {filename}\n \
                         Comparison result: The flow-label was not changed while traversing the path to destination {destination_ip}.")
     except FileNotFoundError:
         print("Error: No such file or directory")
