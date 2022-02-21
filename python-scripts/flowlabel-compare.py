@@ -84,8 +84,8 @@ if args.directory:
     try:
         for file in os.listdir(args.directory):
             if (os.path.isfile(os.path.join(args.directory, file))):
+                filename = str(file)
                 with open(os.path.join(args.directory, file), 'r') as file:
-                    filename = str(file)
                     data = json.load(file)
                     destination_ip = data['destination']
                     source_flow_label = int(data['flow_label'])
