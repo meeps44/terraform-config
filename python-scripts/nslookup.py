@@ -1,7 +1,7 @@
 import socket
 
 # Performs IPv6 DNS-lookup on a given list of hostnames and logs the resulting IPv6-addresses to a file
-filename = "ipv6-address-list.txt"
+filename = "ipv6-address-list-full.txt"
 
 #hostnames = [
 		#"rutracker.org",
