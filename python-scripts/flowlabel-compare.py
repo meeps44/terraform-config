@@ -107,7 +107,7 @@ if args.directory:
 
                     if (flow_label_changed):
                         for item in hop_list:
-                            print(f"File:\t{args.file}: The flow-label was changed while traversing the path to destination {destination_ip}.")
+                            print(f"File:\t{args.file}: The flow-label was changed while traversing the path to destination {destination_ip}. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
                             if args.verbose:
                                 logging.info(f"\Checked file {args.file}\n \
                                 Comparison result:\n \
@@ -121,9 +121,9 @@ if args.directory:
                             else:
                                 logging.info(f"File:\t{args.file}: The flow-label was changed while traversing the path to destination {destination_ip}. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
                     else:
-                        print(f"File:\t{args.file}: The flow-label was not changed while traversing the path to destination {destination_ip}.")
+                        print(f"File:\t{file}: The flow-label was not changed while traversing the path to destination {destination_ip}.")
                         # logging.info(f"Checked file {args.file}. Comparison result: The flow label did not change") # short version
-                        logging.info(f"\nChecked file {args.file}\n \
+                        logging.info(f"\nChecked file {file}\n \
                         Comparison result: The flow-label was not changed while traversing the path to destination {destination_ip}.")
     except FileNotFoundError:
         print("Error: No such file or directory")
