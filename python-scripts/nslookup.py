@@ -213,7 +213,7 @@ with open(filename, "w") as my_file:
 				my_file.write("\'" + addressInfo + "\'")
 			else:
 				my_file.write("\'" + addressInfo + "\'," + "\n")
+			print(host)
+			print(addressInfo)
 		except socket.gaierror:
 			print(f"No address associated with hostname {host}")
-		print(host)
-		#print(addressInfo)
