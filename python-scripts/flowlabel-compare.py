@@ -1,7 +1,7 @@
 import logging, argparse, json, os
 
-# Opens a log-file (.json) and checks if the flow-label has changed at any point 
-# in the path to the destination.
+# Opens a log-file (.json) or a directory containing log files, and checks if 
+# the flow-label has changed at any point in the path to the destination.
 # The result of the comparison, along with the filename, destination IP, TCP port-number
 # and source flow-label is logged to a log-file.
 
@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--directory", "-dir", "-d", const=default_dir, nargs='?', help="Directory containing json log files that you would like to run the flow-label check on")
 parser.add_argument("--file", "-f", help="Json file that you would like to run the flow-label check on")
 parser.add_argument("--log", "-l", const='/root/logs/flowlabel_compare.log', nargs='?', help="Specify a logfile. Default = /root/logs/flowlabel_compare.log")
-#parser.add_argument('-v', '-V', '--v', '--V', action='store_true')  # verbose mode. currently not implemented
+parser.add_argument('-v', '--verbose', action='store_true')  # verbose mode. currently not implemented
 args = parser.parse_args()
 
 # initialize logging:
@@ -54,16 +54,18 @@ if args.file:
             if (flow_label_changed):
                 for item in hop_list:
                     print(f"The flow-label was changed while traversing the path to destination {destination_ip}.")
-                    # logging.info(f"Checked file {args.file}. Comparison result: The flow label changed") # short version
-                    logging.info(f"\Checked file {args.file}\n \
-                    Comparison result:\n \
-                    Destination IP: {destination_ip}\n \
-                    Source Flow label: {source_flow_label}\n \
-                    Outbound TCP port: {tcp_port}\n \
-                    Change in flow-label detected at hop number: {item[0]}\n \
-                    From hop-IP: {item[1]}\n \
-                    New flow-label: {item[1]}\n \
-                    The flow-label was changed while traversing the path to destination {destination_ip}.")
+                    if args.v:
+                        logging.info(f"\Checked file {args.file}\n \
+                        Comparison result:\n \
+                        Destination IP: {destination_ip}\n \
+                        Source Flow label: {source_flow_label}\n \
+                        Outbound TCP port: {tcp_port}\n \
+                        Change in flow-label detected at hop number: {item[0]}\n \
+                        From hop-IP: {item[1]}\n \
+                        New flow-label: {item[1]}\n \
+                        The flow-label was changed while traversing the path to destination {destination_ip}.")
+                    else:
+                        logging.info(f"Checked file {args.file}. Comparison result: The flow label changed")
             else:
                 print(f"The flow-label was not changed while traversing the path to destination {destination_ip}.")
                 # logging.info(f"Checked file {args.file}. Comparison result: The flow label did not change") # short version
