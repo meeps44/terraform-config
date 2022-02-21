@@ -207,10 +207,13 @@ hostnames = [
 
 with open(filename, "w") as my_file:
 	for host in hostnames:
-		addressInfo = socket.getaddrinfo(host, 80, family=socket.AF_INET6, proto=socket.IPPROTO_TCP)[0][-1][0]
+		try:
+			addressInfo = socket.getaddrinfo(host, 80, family=socket.AF_INET6, proto=socket.IPPROTO_TCP)[0][-1][0]
+			if (host == hostnames[len(hostnames)-1]):
+				my_file.write("\'" + addressInfo + "\'")
+			else:
+				my_file.write("\'" + addressInfo + "\'," + "\n")
+		except socket.gaierror:
+			print(f"No address associated with hostname {host}")
 		print(host)
-		print(addressInfo)
-		if (host == hostnames[len(hostnames)-1]):
-			my_file.write("\'" + addressInfo + "\'")
-		else:
-			my_file.write("\'" + addressInfo + "\'," + "\n")
+		#print(addressInfo)
