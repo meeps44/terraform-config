@@ -1,6 +1,6 @@
 import socket
 
-# Performs DNS-lookup on a given list of hostnames and logs the result to a file
+# Performs IPv6 DNS-lookup on a given list of hostnames and logs the resulting IPv6-addresses to a file
 filename = "ipv6-address-list.txt"
 
 #hostnames = [
