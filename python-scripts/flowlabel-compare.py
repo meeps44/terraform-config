@@ -57,7 +57,8 @@ if args.file:
 
             if (flow_label_changed):
                 for item in hop_list:
-                    print(f"The flow-label was changed while traversing the path to destination {destination_ip}.")
+                    print(f"File: {args.file}: The flow-label changed in transit. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                    #print(f"The flow-label was changed while traversing the path to destination {destination_ip}.")
                     if args.verbose:
                         logging.info(f"\Checked file {args.file}\n \
                         Comparison result:\n \
@@ -108,7 +109,8 @@ if args.directory:
 
                     if (flow_label_changed):
                         for item in hop_list:
-                            print(f"File:\t{filename}: The flow-label was changed while traversing the path to destination {destination_ip}. \nSent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                            #print(f"File:\t{filename}: The flow-label was changed while traversing the path to destination {destination_ip}. \nSent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
+                            print(f"File: {filename}: The flow-label changed in transit. Sent flow-label: {source_flow_label}. Returned flow-label: {item[2]}")
                             if args.verbose:
                                 logging.info(f"\Checked file {filename}\n \
                                 Comparison result:\n \
