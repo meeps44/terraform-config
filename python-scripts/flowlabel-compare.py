@@ -33,7 +33,6 @@ datefmt='%Y-%m-%d %H:%M:%S')
 
 if args.file:
     if os.path.isfile(args.file):
-        print(args.file)
         with open(args.file, "r") as file:
             data = json.load(file)
             destination_ip = data['destination']
