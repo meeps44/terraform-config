@@ -77,7 +77,7 @@ if args.file:
                 # logging.info(f"Checked file {args.file}. Comparison result: The flow label did not change") # short version
                 logging.info(f"File: {args.file}: The flow-label did not change in transit.")
             
-            print("Comparison completed. Results logged to: /root/logs/flowlabel_compare.log")
+        print("Comparison completed. Results logged to: /root/logs/flowlabel_compare.log")
     else:
         print(f"Error: '{args.file}' is not a file")
         exit(1)
@@ -132,7 +132,7 @@ if args.directory:
                         # logging.info(f"Checked file {args.file}. Comparison result: The flow label did not change") # short version
                         logging.info(f"File: {filename}: The flow-label did not change in transit.") 
 
-                print("Comparison completed. Results logged to: /root/logs/flowlabel_compare.log")
+        print("Comparison completed. Results logged to: /root/logs/flowlabel_compare.log")
     except FileNotFoundError:
         print("Error: No such file or directory")
         exit(1)
