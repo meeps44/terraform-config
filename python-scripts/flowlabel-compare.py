@@ -16,7 +16,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--directory", "-dir", "-d", const=default_dir, nargs='?', help="Directory containing json log files that you would like to run the flow-label check on")
 parser.add_argument("--file", "-f", help="Json file that you would like to run the flow-label check on")
 parser.add_argument("--log", "-l", const='/root/logs/flowlabel_compare.log', nargs='?', help="Specify a logfile. Default = /root/logs/flowlabel_compare.log")
-parser.add_argument('-v', '--verbose', action='store_true')
+parser.add_argument("--verbose", "-v", action="store_true")
 args = parser.parse_args()
 
 # initialize logging:
@@ -58,7 +58,7 @@ if args.file:
             if (flow_label_changed):
                 for item in hop_list:
                     print(f"The flow-label was changed while traversing the path to destination {destination_ip}.")
-                    if args.v:
+                    if args.verbose:
                         logging.info(f"\Checked file {args.file}\n \
                         Comparison result:\n \
                         Destination IP: {destination_ip}\n \
@@ -108,7 +108,7 @@ if args.directory:
                     if (flow_label_changed):
                         for item in hop_list:
                             print(f"The flow-label was changed while traversing the path to destination {destination_ip}.")
-                            if args.v:
+                            if args.verbose:
                                 logging.info(f"\Checked file {args.file}\n \
                                 Comparison result:\n \
                                 Destination IP: {destination_ip}\n \
