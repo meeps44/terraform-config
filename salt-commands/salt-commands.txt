@@ -6,12 +6,12 @@ salt-cp '*'
 salt '*' cmd.run 'echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCkwVDhGaQSUpSA4yvAoCwz8h0vyIMyHBmMLTV5gXOvo+i8igURd9b5ZKV9ygrvzxtbiSG7oUbBONpJ1rrgAby1wZ5nQd6jrxQE3UwpuxQC1mMk+5MEpbw/PFmIPdNtVCpn5mRFjkhJpN78IVk43qQw0T9LdkwGqBDBvdfUgzGa66y7NtDpDZUQ+TfRTSku7ubwdj1U6WXQ7FYn+alGwO0pr40XmyyVeD8CmB6sqReva5btrF3VAOSIAykEbaLY1WV3ydNg3p6TRNwlLIBlIDBTtAtyFX1fTFzexAmywxqSKj1wVRH+g2XCpMnJIB3RoY5Pl63pEW6bodlOLAVYZtBI72qndSq8//01J387KMLV92jNzngsDtlgKJxOCDL7JK6fUAcelfK0xMKLMyGXN8QUw9oduoVOgRs+KhId637WxNNVu6osrxFIGZ7UtZQpn6YYfYTYs8grNUBMzGJ6hAb3SwWGpVlmMZ39RjfBbgUB+1lXUzp1iotJQNXEULjC5Pk= root@ubuntu-s-1vcpu-1gb-lon1-01 >> /root/.ssh/authorized_keys'
 salt '*' cmd.run 'sudo paris-traceroute -T 23 ipv6.google.com'
 
-salt '*' cmd.run 'git clone https://github.com/meeps44/scripts.git /root/git/'
+salt '*' cmd.run 'git clone https://github.com/meeps44/scripts.git /root/git/scripts'
 # salt '*' cmd.run 'curl --remote-name https://raw.githubusercontent.com/meeps44/terraform-config/master/python-scripts/text-to-json-2.py'
 # salt '*' cmd.run 'curl --remote-name https://raw.githubusercontent.com/meeps44/terraform-config/master/bash-scripts/ipv6-address-list-full.txt'
 # salt '*' cmd.run 'curl --remote-name https://raw.githubusercontent.com/meeps44/terraform-config/master/bash-scripts/paris-traceroute-run-test.sh'
 # salt '*' cmd.run 'curl --remote-name https://raw.githubusercontent.com/meeps44/terraform-config/master/python-scripts/flowlabel-compare.py'
-salt '*' cmd.run 'bash paris-traceroute-run-test.sh'
+salt '*' cmd.run 'bash /root/git/scripts/bash-scripts/paris-traceroute-run-test.sh'
 
 
 files needed on salt minions:
