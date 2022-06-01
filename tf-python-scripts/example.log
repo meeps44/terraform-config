@@ -1,0 +1,26 @@
+2022-02-09 22:23:21 INFO     
+Compared files /home/erlend/git/terraform-config/bash-scripts/json-files/ubuntu-lon1-0-09-21-20-25-60fce8.json and /home/erlend/git/terraform-config/bash-scripts/json-files/ubuntu-lon1-0-09-21-20-08-60fce8.json
+         /home/erlend/git/terraform-config/bash-scripts/json-files/ubuntu-lon1-0-09-21-20-25-60fce8.json info:
+         Source IP: 2a03:b0c0:1:d0::b45:6001
+         Destination IP: 2a00:1d58:0:1902:94:55:118:33
+         Flow label: 44
+         Outbound TCP port: 443
+         /home/erlend/git/terraform-config/bash-scripts/json-files/ubuntu-lon1-0-09-21-20-08-60fce8.json info:
+         Source IP: 2a03:b0c0:1:d0::b45:6001
+         Destination IP: 2a00:1d58:0:1902:94:55:118:33
+         Flow label: 230
+         Outbound TCP port: 443
+         Comparison result: The routes are equal.
+2022-02-10 23:37:53 INFO     
+Compared files /home/erlend/logs/root/logs/ubuntu-lon1-0/ubuntu-lon1-0-10-22-06-51-60fce8.json and /home/erlend/logs/root/logs/ubuntu-lon1-0/ubuntu-lon1-0-10-22-07-03-60fce8.json
+         /home/erlend/logs/root/logs/ubuntu-lon1-0/ubuntu-lon1-0-10-22-06-51-60fce8.json info:
+         Source IP: 2a03:b0c0:1:d0::b45:6001
+         Destination IP: 2a00:1d58:0:1902:94:55:118:33
+         Flow label: 230
+         Outbound TCP port: 80
+         /home/erlend/logs/root/logs/ubuntu-lon1-0/ubuntu-lon1-0-10-22-07-03-60fce8.json info:
+         Source IP: 2a03:b0c0:1:d0::b45:6001
+         Destination IP: 2a00:1d58:0:1902:94:55:118:33
+         Flow label: 44
+         Outbound TCP port: 80
+         Comparison result: The routes are equal.
