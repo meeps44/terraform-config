@@ -13,6 +13,11 @@ salt '*' cmd.run 'git clone https://github.com/meeps44/scripts.git /root/git/scr
 # salt '*' cmd.run 'curl --remote-name https://raw.githubusercontent.com/meeps44/terraform-config/master/python-scripts/flowlabel-compare.py'
 salt '*' cmd.run 'bash /root/git/scripts/bash-scripts/paris-traceroute-run-test.sh'
 
+# List all minions:
+salt-key --list-all
+
+# Remove minion:
+salt-key -d <minion name>
 
 files needed on salt minions:
 	text-to-json-2.py
