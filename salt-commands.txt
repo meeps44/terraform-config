@@ -28,7 +28,16 @@ systemctl start salt-master (Ubuntu/Debian)
 OR
 salt-master -d
 # On minion:
+systemctl start salt-minion (Ubuntu/Debian)
 salt-minion -d
+
+# How to restart salt:
+systemctl restart salt-master
+systemctl restart salt-minion
+
+# Verify status of salt minions (run on master):
+sudo salt-run manage.up
+salt '*' test.ping
 
 # Run command:
 salt '*' cmd.run 'git -C $HOME/git/scripts pull'
@@ -53,3 +62,6 @@ Not supported by Salt. Use SCP instead.
 # same salt functions. This means that pkg.install will install packages via yum 
 # on Red Hat based systems, apt on Debian systems, etc.)
 salt '*' pkg.install vim
+
+# How to check salt minon status (run on minion):
+systemctl status salt-minion
