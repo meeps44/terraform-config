@@ -4,7 +4,7 @@ resource "digitalocean_droplet" "www-2" {
     image = "ubuntu-20-04-x64"
     name = "ubuntu-ams3-${count.index}"
     region = "ams3" 
-    size = "s-1vcpu-1gb"
+    size = "s-1vcpu-2gb"
     ipv6 = true
     ssh_keys = [
       data.digitalocean_ssh_key.new-key.id

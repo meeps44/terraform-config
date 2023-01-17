@@ -4,7 +4,7 @@ resource "digitalocean_droplet" "www-8" {
     image = "ubuntu-20-04-x64"
     name = "ubuntu-blr1-${count.index}"
     region = "blr1"
-    size = "s-1vcpu-1gb"
+    size = "s-1vcpu-2gb"
     ipv6 = true
     ssh_keys = [
       data.digitalocean_ssh_key.new-key.id
